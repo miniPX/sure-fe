@@ -8,6 +8,7 @@ const Site = ({ Component, pageProps }: AppProps) => (
         body: {
           margin: 0,
           display: "flex",
+          maxWidth: "100vw",
           overflowX: "hidden",
         },
       }}
