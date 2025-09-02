@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { LoginContainer } from "./style";
+import { LoginContainer, LoginText, LoginInput } from "./style";
 import { MainLayout } from "../main/layout";
 
 export const Login = () => {
@@ -7,7 +7,12 @@ export const Login = () => {
 
   return (
     <MainLayout>
-      <LoginContainer />
+      <LoginContainer>
+        <LoginText>email</LoginText>
+        <LoginInput />
+        <LoginText>password</LoginText>
+        <LoginInput type="password" />
+      </LoginContainer>
     </MainLayout>
   );
 };

@@ -29,6 +29,9 @@ export const Container = styled.div({
 export const Page = styled.div({
   width: "100%",
   minHeight: `calc(100vh - ${headerHeight + footerHeight}px)`,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 });
 
 export const Nav = styled.div({
