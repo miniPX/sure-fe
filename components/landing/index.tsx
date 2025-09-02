@@ -1,8 +1,9 @@
 import React from "react";
-import { TopNav } from "../main/topNav";
+import { MainLayout } from "../main/layout";
+import { TradeTable } from "../subcomponents/table";
 
 export const Landing = () => (
-  <>
-    <TopNav />
-  </>
+  <MainLayout showNav={true}>
+    <TradeTable />
+  </MainLayout>
 );

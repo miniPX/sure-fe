@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import {
   Container,
   Title,
@@ -26,7 +27,16 @@ enum DrawerNav {
 
 const DrawerNavs = Object.values(DrawerNav);
 
-export const TopNav = () => {
+type TopNavProps = {
+  showNav?: boolean;
+};
+
+export const TopNav = ({ showNav }: PropsWithChildren<TopNavProps>) => {
+  const router = useRouter();
+
+  const navigateToLogin = () => router.push("/login");
+  const navigateToLanding = () => router.push("/");
+
   const [drawer, setDrawer] = useState<DrawerNav>(DrawerNav.NONE);
   const [showDrawer, setShowDrawer] = useState(false);
   const [drawerText, setDrawerText] = useState("");
@@ -70,27 +80,29 @@ export const TopNav = () => {
   return (
     <>
       <Container>
-        <Title>sure</Title>
-        <Nav>
-          {/* below button could be much prettier*/}
-          {DrawerNavs.map((nav, i) =>
-            nav !== "" ? (
-              <NavButton
-                key={i}
-                style={drawer === nav ? hoverStyle : {}}
-                onClick={() =>
-                  nav === drawer ? closeDrawerNav() : setDrawerNav(nav)
-                }
-              >
-                {nav}
-              </NavButton>
-            ) : (
-              <></>
-            )
-          )}
-          <NavButton>login</NavButton>
-          <NavButton>signup</NavButton>
-        </Nav>
+        <Title onClick={() => navigateToLanding()}>sure</Title>
+        {showNav && (
+          <Nav>
+            {/* below button could be much prettier*/}
+            {DrawerNavs.map((nav, i) =>
+              nav !== "" ? (
+                <NavButton
+                  key={i}
+                  style={drawer === nav ? hoverStyle : {}}
+                  onClick={() =>
+                    nav === drawer ? closeDrawerNav() : setDrawerNav(nav)
+                  }
+                >
+                  {nav}
+                </NavButton>
+              ) : (
+                <></>
+              )
+            )}
+            <NavButton onClick={() => navigateToLogin()}>login</NavButton>
+            <NavButton>signup</NavButton>
+          </Nav>
+        )}
       </Container>
       <NavDrawer style={{ display: showDrawer ? "flex" : "none" }}>
         <NavDrawerTitle>{drawerTitle}</NavDrawerTitle>
